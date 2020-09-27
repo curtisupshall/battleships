@@ -21,6 +21,14 @@ Now start the backend.
 npm run dev
 ```
 
+Next you need to set up your `.env` file
+
+```bash
+cp .env.example .env
+```
+
+Do *not* commit the `.env` to version control! Change the secret key in the `.env` file to something else.
+
 ## Setting Up the Frontend
 First install frontend dependencies
 
