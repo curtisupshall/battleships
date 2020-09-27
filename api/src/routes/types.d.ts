@@ -34,3 +34,5 @@ export interface ICheckCodeRequest extends Request {
 export interface IListGamesRequest extends Request {
     playerId: number
 }
+
+export type ILoginRequest = Request

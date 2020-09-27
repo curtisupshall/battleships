@@ -1,5 +1,5 @@
 import Coord from './Coord'
-import { ShipOrientation, ShipType } from './types'
+import { IShipPlacement, ShipOrientation, ShipType } from './types'
 
 /**
  * Creates the coordinates that the ship takes up.

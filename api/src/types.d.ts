@@ -16,7 +16,7 @@ export interface IGameBoard {
 }
 
 export interface IGameState extends IGameBoard {
-    oponentShots: Coord[]
+    opponentShots: Coord[]
 }
 
 export type ShipType = 
@@ -27,3 +27,11 @@ export type ShipType =
     | 'destroyer'
 
 export type ShipOrientation = 'vertical' | 'horizontal'
+
+// JSON interfaces
+
+export interface IShip extends Omit<Ship, 'coords'> {
+    coords: [number, number]
+}
+
+

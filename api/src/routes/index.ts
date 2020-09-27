@@ -1,17 +1,26 @@
 import express, { Request, Response, Router } from 'express'
+import jwt from 'jsonwebtoken'
 
 import {
     ICreateGameRequest,
     ICheckCodeRequest,
     IJoinGameRequest,
     IListGamesRequest,
-    IMoveRequest,
+	IMoveRequest,
+	ILoginRequest,
     IResignRequest
 } from './types'
 import Engine from '../Engine'
 
 const router: Router = express.Router()
 const engine: Engine = new Engine()
+
+router.post('/login', (request: ILoginRequest, response: Response): Response => {
+	const header: string = request.headers['Authentication'] as string
+	const token: string = header.split(' ')[1]
+	const decodedToken: string = jwt.verify(token, SECRET_TOKEN)
+	return
+})
 
 router.post('/create', (request: ICreateGameRequest, response: Response): Response => {
     response.status(200)
