@@ -6,7 +6,6 @@
         "module": "commonjs",
         "lib": ["es6", "dom", "es2017"],
         "target": "es2015",
-        "types": ["jest"],
         "typeRoots": ["./src/types", "node_modules/@types", "./src/routes/types"],
         "moduleResolution": "node",
         "esModuleInterop": true,

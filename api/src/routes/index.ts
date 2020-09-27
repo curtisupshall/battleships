@@ -15,7 +15,7 @@ const engine: Engine = new Engine()
 
 router.post('/create', (request: ICreateGameRequest, response: Response): Response => {
     response.status(200)
-    const data = engine.createGame()
+    // const data = engine.createGame()
 	response.json()
 
 	return response
