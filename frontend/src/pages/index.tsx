@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Button from '../components/Button'
+import GameBoard from '../components/GameBoard'
 import TextField from '../components/TextField'
 
 export default () => (
@@ -12,5 +13,6 @@ export default () => (
             onChange={null}
             label='Name'
         />
+        <GameBoard />
     </div>
 )

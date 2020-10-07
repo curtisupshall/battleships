@@ -1,0 +1,49 @@
+.ship-segment {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 4px solid;
+    background: #444;
+    border-color: #111;
+    overflow: visible;
+
+    &.--carrier {
+        background: $carrier-primary;
+        border-color: $carrier-secondary;
+    }
+
+    &.--battleship {
+        background: $battleship-primary;
+        border-color: $battleship-secondary;
+    }
+
+    &.--cruiser {
+        background: $cruiser-primary;
+        border-color: $cruiser-secondary;
+    }
+
+    &.--submarine {
+        background: $submarine-primary;
+        border-color: $submarine-secondary;
+    }
+
+    &.--destroyer {
+        background: $destroyer-primary;
+        border-color: $destroyer-secondary;
+    }
+
+    &.--hit {
+        &::after {
+            content: '';
+            background: url('/images/icons/cross.ico');
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+    }
+}
