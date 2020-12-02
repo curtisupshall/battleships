@@ -1,17 +1,19 @@
 import '../styles/main.scss'
 
-import TopBar from '../components/TopBar'
-
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
+import { Provider } from 'react-redux'
+
+import TopBar from '../components/TopBar'
+import withReduxStore from '../hocs/withReduxStore'
 
 export const makeDocTitle = (title?: string): string => {
     return title ? `${title} – Battleships` : 'Battleships'
 }
 
 const CustomApp = (props: AppProps) => {
-    const { Component, pageProps } = props
+    const { Component, pageProps, store } = props
 
     React.useEffect(() => {
         // Remove the server-side injected CSS.
@@ -31,12 +33,14 @@ const CustomApp = (props: AppProps) => {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <title>{makeDocTitle()}</title>
             </Head>
-            <div className='app'>
-                <TopBar />
-                <Component {...pageProps} />
-            </div>
+            <Provider store={store}>
+                <div className='app'>
+                    <TopBar />
+                    <Component {...pageProps} />
+                </div>
+            </Provider>
         </>
     )
 }
 
-export default CustomApp
+export default withReduxStore(CustomApp)

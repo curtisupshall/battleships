@@ -1,4 +1,4 @@
-import { FETCH_USER } from '../actions/types'
+import { SET_USER } from '../actions/types'
 
 interface IState {
     item: any
@@ -12,10 +12,10 @@ const initialState: IState = {
 
 export const usersReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case FETCH_USER:
+        case SET_USER:
             return {
                 ...state,
-                items: action.payload
+                item: action.payload
             }
         default:
             return state

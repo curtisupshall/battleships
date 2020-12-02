@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Link from 'next/link'
 
 import {
@@ -90,4 +91,4 @@ const mapDispatchToProps = ({
     signOut
 })
 
-export default TopBar
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar)
