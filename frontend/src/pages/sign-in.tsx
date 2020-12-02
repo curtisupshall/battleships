@@ -41,7 +41,7 @@ const SignInPage = () => {
                 <DialogTitle>Sign in to Battleships</DialogTitle>
                 <DialogContent>
                     <DialogContentText>Please sign in below to play Battleships! If you don't have an account, you can create one.</DialogContentText>
-                    <Tabs onChange={handleTabChange} value={tab} variant='fullWidth' indicatorColor='primary'>
+                    <Tabs onChange={handleTabChange} value={tab} variant='fullWidth' indicatorColor='primary' disabled={loading}>
                         <Tab label='Sign In' value={0} />
                         <Tab label='Register' value={1} />
                     </Tabs>
@@ -60,6 +60,7 @@ const SignInPage = () => {
                                 margin='dense'
                                 required
                                 autoComplete='off'
+                                disabled={loading}
                             />
                             <TextField
                                 name='password'
@@ -74,6 +75,7 @@ const SignInPage = () => {
                                 margin='dense'
                                 required
                                 autoComplete='off'
+                                disabled={loading}
                             />
                         </div>
                     ) : (
@@ -91,6 +93,7 @@ const SignInPage = () => {
                                 margin='dense'
                                 required
                                 autoComplete='off'
+                                disabled={loading}
                             />
                             <TextField
                                 name='password'
@@ -105,6 +108,7 @@ const SignInPage = () => {
                                 margin='dense'
                                 required
                                 autoComplete='off'
+                                disabled={loading}
                             />
                             <TextField
                                 name='password-check'
@@ -119,6 +123,7 @@ const SignInPage = () => {
                                 margin='dense'
                                 required
                                 autoComplete='off'
+                                disabled={loading}
                             />
                         </div>
                     )}
