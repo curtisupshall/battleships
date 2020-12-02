@@ -8,14 +8,15 @@ interface IFlexboxProps {
     className?: string
     flexDirection?: CSSProperties['flexDirection']
     flexFlow?: CSSProperties['flexFlow']
-    justiftyContent?: CSSProperties['justifyContent']
+    fullWidth?: boolean
+    justifyContent?: CSSProperties['justifyContent']
 }
 
 const Flexbox = (props: IFlexboxProps) => {
-    const { children, className, ...style } = props
+    const { children, className, fullWidth, ...rest } = props
 
     return (
-        <div className={classNames('flexbox', className)} style={{ ...style }}>
+        <div className={classNames('flexbox', className, { '--fullWidth': fullWidth })} style={rest}>
             {children}
         </div>
     )

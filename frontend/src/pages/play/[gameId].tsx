@@ -1,9 +1,11 @@
 import React from 'react'
 
-import { IGameState } from '../../../api/src/types'
+import { IGameState } from '../../../../api/src/types'
 
-import Flexbox from '../components/Flexbox'
-import GameBoard from '../components/GameBoard'
+import Flexbox from '../../components/Flexbox'
+import GameBoard from '../../components/GameBoard'
+
+import withAuth from '../../hocs/withAuth'
 
 const PlayPage = () => {
     // const game: IGame = {}
@@ -18,4 +20,4 @@ const PlayPage = () => {
     )
 }
 
-export default PlayPage
+export default withAuth(PlayPage)

@@ -1,13 +1,4 @@
 .topbar {
-    width: 100vw;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(to right, $gradient-primary, $gradient-secondary);
-    color: #FFF;
-    padding: 8px 16px;
-
     .logo {
         display: flex;
         align-items: center;
