@@ -1,9 +1,9 @@
 .ship-segment {
     position: relative;
-    width: 24px;
-    height: 24px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    border: 4px solid;
+    border: 2px solid;
     background: #444;
     border-color: #111;
     overflow: visible;
@@ -34,16 +34,7 @@
     }
 
     &.--hit {
-        &::after {
-            content: '';
-            background: url('/images/icons/cross.ico');
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-        }
+        background: $submarine-primary;
+        border-color: $submarine-secondary;
     }
 }

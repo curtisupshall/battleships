@@ -1,6 +1,17 @@
 .gameboard {
     &__table {
+        margin-left: -32px;
 
+        td {
+            width: 16px;
+            height: 16px;
+            padding: 4px;
+            text-align: center;
+            vertical-align: middle;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            color: #888;
+        }
     }
 
     &__row {
@@ -8,9 +19,6 @@
     }
 
     &__cell {
-        width: 32px;
-        height: 32px;
-        padding: 8px;
         box-sizing: border-box;
         border: 2px solid;
         border-color: #FFF #808080 #808080 #FFF;
