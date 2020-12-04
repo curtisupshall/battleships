@@ -1,4 +1,16 @@
 #play {
     width: 100vw;
+    padding-top: 32px;
     box-sizing: border-box;
+
+    .play__stats {
+        padding: 32px;
+        text-align: center;
+        height: 150px;
+        margin: 32px;
+    }
+
+    .play__status {
+        margin-top: 16px;
+    }
 }
