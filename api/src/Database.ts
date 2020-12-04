@@ -5,7 +5,6 @@ import Player from './Player'
 
 sqlite3.verbose()
 const { DB_PATH } = process.env
-console.log('DB_PATH:', DB_PATH)
 
 class Database {
     private database: SQLDatabase = new sqlite3.Database(DB_PATH)
@@ -51,21 +50,36 @@ class Database {
     /**
      * Create a new Game.
      */
-    createGame = (playerId: number, shipJson: string, width: number, height: number): Game => {
-        // Generate a *unique* game code.
-        // NOTE: This code is NOT unique and is only PSEUDO RANDOM.
-        const code: string = Math.random().toString(36).substring(2, 8).toUpperCase()
-
-        this.database.serialize(() => {
-            const stmt: Statement = this.database.prepare('INSERT INTO GAMES (')
-            stmt.run(name)
-            stmt.finalize()
-            stmt.all((err, rows) => {
-                games = rows
-            })
-        })
+    createGame = (playerId: number, shipJson: string, width: number, height: number, gameCode: string): Game => {
+        var game: Game
+        var gameId: number
+        
         // Create the new Game.
-        return null
+        this.database.serialize(() => {
+            this.database.run(
+                'INSERT INTO games (playerId, gameCode, width, height, playerShips) VALUES (?,?,?,?,?)',
+                [playerId, gameCode, width, height, shipJson],
+                function (err: any) {
+                    gameId = this.lastID
+                }
+            )
+
+            console.log("GAME_ID", gameId)
+
+            if (gameId) {
+                this.database.get(
+                    'SELECT * FROM games WHERE gameId = ?',
+                    [gameId],
+                    (err: any, row) => {
+                        console.log('raw game =', game)
+                        game = row
+                    }
+                )
+            }
+    
+            // stmt.finalize()
+        })
+        return game
     }
 
     /**

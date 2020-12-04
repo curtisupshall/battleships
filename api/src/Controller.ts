@@ -13,9 +13,19 @@ import GameBoard from './GameBoard'
  */
 export const createGame = (playerId: number, ships: Coord[], width: number, height: number): Game => {
     const database = new Database()
+
+    // Convert ships into JSON
     const shipJson: string = ships.map((ship: Coord) => ship.toString()).join(',')
-    const game: Game = database.createGame(playerId, shipJson, width, height)
-    return null
+
+    // Generate a *unique* game code.
+    // NOTE: This code is NOT unique and is only PSEUDO RANDOM.
+    const gameCode: string = Math.random().toString(36).substring(2, 8).toUpperCase()
+
+    // Create the game record
+    const game: Game = database.createGame(playerId, shipJson, width, height, gameCode)
+
+    console.log('Created game:', game)
+    return game
 }
 
 export const getGames = (playerId: number): Game[] => {

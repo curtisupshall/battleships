@@ -33,10 +33,11 @@ database.serialize(() => {
      * Games table.
      */
     database.run('CREATE TABLE games ( \
+        gameId INTEGER PRIMARY KEY AUTOINCREMENT, \
         playerId INTEGER, \
         opponentId INTEGER DEFAULT NULL, \
         gameCode VARCHAR NOT NULL, \
-        active TINYINT, \
+        active TINYINT DEFAULT 1, \
         width INTEGER, \
         height INTEGER, \
         playerShips TEXT NOT NULL, \
