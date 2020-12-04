@@ -4,9 +4,10 @@ import Game from './Game'
 import Player from './Player'
 
 sqlite3.verbose()
+const { DB_PATH } = process.env
 
 class Database {
-    private database: SQLDatabase = new sqlite3.Database('battleships')
+    private database: SQLDatabase = new sqlite3.Database(DB_PATH)
 
     /**
      * Inserts a player into the database.

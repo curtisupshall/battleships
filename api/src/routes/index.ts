@@ -10,15 +10,18 @@ import {
 	ILoginRequest,
     IResignRequest
 } from './types'
-import Engine from '../Engine'
+
+import {
+	test
+} from '../Controller'
 
 const router: Router = express.Router()
-const engine: Engine = new Engine()
 
 router.post('/login', (request: ILoginRequest, response: Response): Response => {
 	const header: string = request.headers['Authentication'] as string
 	const token: string = header.split(' ')[1]
-	const decodedToken: string = jwt.verify(token, SECRET_TOKEN)
+	const { SECRET_TOKEN } = process.env
+	// const decodedToken: string = jwt.verify(token, SECRET_TOKEN) as string
 	return
 })
 
@@ -59,6 +62,14 @@ router.get('/validate', (request: ICheckCodeRequest, response: Response): Respon
 })
 
 router.post('/games', (request: IListGamesRequest, response: Response): Response => {
+	response.status(200)
+	response.json()
+
+	return response
+})
+
+router.post('/test', (request: IListGamesRequest, response: Response): Response => {
+	test()
 	response.status(200)
 	response.json()
 

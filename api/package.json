@@ -8,7 +8,8 @@
     "build": "tsc -p .",
     "dev": "nodemon src/index.ts",
     "lint": "tslint --project .",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "migrate": "rm ./battleships.db && ts-node scripts/migrate.ts"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +25,9 @@
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.8",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/morgan": "^1.9.1",
+    "@types/node": "^14.14.10",
     "@types/sqlite3": "^3.1.6",
     "nodemon": "^2.0.4",
     "ts-node": "^9.0.0",
