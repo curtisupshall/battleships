@@ -3,7 +3,7 @@ import env from 'dotenv'
 
 env.config()
 
-console.log('Migration started.')
+console.log('Migration started...')
 sqlite3.verbose()
 
 const { DB_PATH } = process.env
@@ -45,5 +45,18 @@ database.serialize(() => {
     )')
 })
 
-database.close()
 console.log("Migration complete.")
+console.log("Seeding database...")
+
+database.serialize(() => {
+    database.run('INSERT INTO players (username, password) VALUES (\
+        "alice", "5f4dcc3b5aa765d61d8327deb882cf99" \
+    )')
+    database.run('INSERT INTO players (username, password) VALUES (\
+        "bob", "5f4dcc3b5aa765d61d8327deb882cf99" \
+    )')
+})
+
+
+console.log("Seeding complete.")
+database.close()

@@ -5,6 +5,7 @@ import Player from './Player'
 
 sqlite3.verbose()
 const { DB_PATH } = process.env
+console.log('DB_PATH:', DB_PATH)
 
 class Database {
     private database: SQLDatabase = new sqlite3.Database(DB_PATH)
@@ -23,6 +24,21 @@ class Database {
         this.database.close()
         return null
     }
+    
+    getGames = (playerId: number): Game[] => {
+        let games: Game[] = []
+        this.database.serialize(() => {
+            const stmt: Statement = this.database.prepare('SELECT * FROM games WHERE playerId = ? OR opponentId = ?')
+            stmt.run(name)
+            stmt.finalize()
+            stmt.all((err, rows) => {
+                games = rows
+            })
+        })
+
+        this.database.close()
+        return games
+    }
 
     /**
      * Find a Player by the given ID.
@@ -35,8 +51,19 @@ class Database {
     /**
      * Create a new Game.
      */
-    createGame = (playerId: number, width: number, height: number): Game => {
+    createGame = (playerId: number, shipJson: string, width: number, height: number): Game => {
         // Generate a *unique* game code.
+        // NOTE: This code is NOT unique and is only PSEUDO RANDOM.
+        const code: string = Math.random().toString(36).substring(2, 8).toUpperCase()
+
+        this.database.serialize(() => {
+            const stmt: Statement = this.database.prepare('INSERT INTO GAMES (')
+            stmt.run(name)
+            stmt.finalize()
+            stmt.all((err, rows) => {
+                games = rows
+            })
+        })
         // Create the new Game.
         return null
     }

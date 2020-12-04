@@ -1,5 +1,5 @@
 import Coord from './Coord'
-import { IShipPlacement, ShipOrientation, ShipType } from './types'
+import { ShipOrientation, ShipType } from './types'
 
 /**
  * Creates the coordinates that the ship takes up.
@@ -7,6 +7,10 @@ import { IShipPlacement, ShipOrientation, ShipType } from './types'
  * @param origin The origin coordinate of the ship
  * @param orientation The orientation of the ship, 'horizontal' or 'vertical'
  */
+/**
+ * DEPRICATED
+ */
+/*
 export const createShipCoords = (type: ShipType, origin: Coord, orientation: ShipOrientation): Coord[] => {
     let shipLength: number = 1
     let shipCoordinates: Coord[] = [origin]
@@ -38,4 +42,15 @@ export const createShipCoords = (type: ShipType, origin: Coord, orientation: Shi
     }
 
     return shipCoordinates
+}
+*/
+
+/**
+ * Determines whether or not the placement of the Player's ships is allowed.
+ * @param ships The placement of the Ships that the Player is requesting
+ */
+export const validateShips = (ships: Coord[], width: number, height: number): boolean => {
+    // 1. Check that all ship segements are in bounds
+    // 2. Check that no two ships are overlapping
+    return true
 }

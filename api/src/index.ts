@@ -1,5 +1,8 @@
-import bodyParser from 'body-parser'
 import env from 'dotenv'
+// Configure .env file
+env.config()
+
+import bodyParser from 'body-parser'
 import express, {
 	Errback,
 	Express,
@@ -10,9 +13,6 @@ import express, {
 import logger from 'morgan'
 
 import { router } from './routes/index'
-
-// Configure .env file
-env.config()
 
 const app: Express = express()
 

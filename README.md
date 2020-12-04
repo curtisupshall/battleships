@@ -9,22 +9,22 @@ cd api
 npm install
 ```
 
+Next you need to set up your `.env` file.
+
+```bash
+cp .env.example .env
+```
+
 Next, run the migration script to get the database set up.
 
 ```bash
-./scripts/migrate.sh
+npm run migrate
 ```
 
 Now start the backend.
 
 ```bash
 npm run dev
-```
-
-Next you need to set up your `.env` file
-
-```bash
-cp .env.example .env
 ```
 
 Do *not* commit the `.env` to version control! Change the secret key in the `.env` file to something else.

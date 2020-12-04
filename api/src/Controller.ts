@@ -1,7 +1,8 @@
+import Coord from './Coord'
 import Database from './Database'
 import Game from './Game'
 import GameBoard from './GameBoard'
-import { IShipPlacement } from './types'
+
 
 
 /**
@@ -10,12 +11,17 @@ import { IShipPlacement } from './types'
  * @param shipPlacement The placement of the ships the player has chosen
  * @return The new Game that has been created
  */
-export const createGame = (playerId: number, shipPlacement: IShipPlacement[]): Game => {
+export const createGame = (playerId: number, ships: Coord[], width: number, height: number): Game => {
     const database = new Database()
-    // Check if the Player exists in the database
-    // Check if the Player's ship placement is valid (use GameBoard.validateShipPlacement)
-    // Create the Game and return it
+    const shipJson: string = ships.map((ship: Coord) => ship.toString()).join(',')
+    const game: Game = database.createGame(playerId, shipJson, width, height)
     return null
+}
+
+export const getGames = (playerId: number): Game[] => {
+    const database = new Database()
+    const games: Game[] = database.getGames(playerId)
+    return games
 }
 
 /**
@@ -45,13 +51,7 @@ export const checkGameCode = (gameCode: string): boolean => {
     return false
 }
 
-export const joinGame = (opponentId: number, shipPlacement: IShipPlacement[], gameCode: string): Game => {
+export const joinGame = (opponentId: number, ships: Coord[], gameCode: string): Game => {
     //
     return null
-}
-
-export const test = () => {
-    const database = new Database()
-    database.test()
-    return
 }

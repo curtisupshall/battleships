@@ -1,10 +1,10 @@
 import { Request } from 'express'
 
-import { IShipPlacement } from '../types'
-
-export interface ICreateGameRequest extends Request {
+export interface ICreateGameRequest {
     playerId: number
-    shipPlacement: IShipPlacement[]
+    ships: [number, number][]
+    width: number
+    height: number
 }
 
 export interface IResignRequest extends Request  {
@@ -23,7 +23,6 @@ export interface IMoveRequest extends Request {
 export interface IJoinGameRequest extends Request {
     playerId: number
     gameCode: string
-    shipPlacement: IShipPlacement[]
 }
 
 export interface ICheckCodeRequest extends Request {
