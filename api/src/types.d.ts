@@ -1,12 +1,21 @@
 import Coord from './Coord'
-import Ship from './Ship'
+import Game from './Game'
 
-export interface IGameBoard {
-    readonly id: number
-    readonly width: number
-    readonly height: number
-    shotsFired: Coord[]
-    readonly ships: Ship[]
+export interface IGame extends IGameShots {
+    gameId: number
+    playerId: number
+    opponentId: number
+    gameCode: string
+    active: boolean
+    width: number
+    height: number
+    playerShips: [number, number][]
+    opponentShips: [number, number][]
+}
+
+export interface IGameShots {
+    playerShots: [number, number][]
+    opponentShots: [number, number][]
 }
 
 export type ShipType = 
@@ -17,11 +26,4 @@ export type ShipType =
     | 'destroyer'
 
 export type ShipOrientation = 'vertical' | 'horizontal'
-
-// JSON interfaces
-
-export interface IShip extends Omit<Ship, 'coords'> {
-    coords: [number, number]
-}
-
 

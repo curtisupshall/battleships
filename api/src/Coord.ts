@@ -7,6 +7,11 @@ class Coord {
         this.y = y
     }
 
+    static fromString = (jsonData: string): Coord[] => {
+        const coords: [number, number][] = JSON.parse(jsonData)
+        return coords.map((coord: [number, number]) => new Coord(coord[0], coord[1]))
+    }
+
     /**
      * Determines if two points are equal.
      * @param other The other Coord

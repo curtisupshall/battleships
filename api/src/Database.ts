@@ -2,6 +2,7 @@ import sqlite3, { Database as SQLDatabase, Statement } from 'sqlite3'
 
 import Game from './Game'
 import Player from './Player'
+import { IGame, IGameShots } from './types'
 
 sqlite3.verbose()
 const { DB_PATH } = process.env
@@ -24,15 +25,16 @@ class Database {
         return null
     }
     
-    getGames = (playerId: number): Game[] => {
-        let games: Game[] = []
+    getGames = (playerId: number): IGame[] => {
+        let games: IGame[] = []
         this.database.serialize(() => {
-            const stmt: Statement = this.database.prepare('SELECT * FROM games WHERE playerId = ? OR opponentId = ?')
-            stmt.run(name)
-            stmt.finalize()
-            stmt.all((err, rows) => {
-                games = rows
-            })
+            this.database.each(
+                'SELECT * FROM games WHERE playerId = ? OR opponentId = ?',
+                [playerId, playerId],
+                (err: any, row: any) => {
+
+                }
+            )
         })
 
         this.database.close()
@@ -50,36 +52,16 @@ class Database {
     /**
      * Create a new Game.
      */
-    createGame = (playerId: number, shipJson: string, width: number, height: number, gameCode: string): Game => {
-        var game: Game
-        var gameId: number
-        
+    createGame = (playerId: number, shipJson: string, width: number, height: number, gameCode: string): Game => {        
         // Create the new Game.
         this.database.serialize(() => {
             this.database.run(
                 'INSERT INTO games (playerId, gameCode, width, height, playerShips) VALUES (?,?,?,?,?)',
-                [playerId, gameCode, width, height, shipJson],
-                function (err: any) {
-                    gameId = this.lastID
-                }
+                [playerId, gameCode, width, height, shipJson]
             )
-
-            console.log("GAME_ID", gameId)
-
-            if (gameId) {
-                this.database.get(
-                    'SELECT * FROM games WHERE gameId = ?',
-                    [gameId],
-                    (err: any, row) => {
-                        console.log('raw game =', game)
-                        game = row
-                    }
-                )
-            }
-    
-            // stmt.finalize()
         })
-        return game
+
+        return this.findGameByCode(gameCode)
     }
 
     /**
@@ -87,8 +69,16 @@ class Database {
      * @param gameCode The game code of the game we want to find.
      */
     findGameByCode = (gameCode: string): Game => {
-        //
-        return null
+        let game: Game
+        this.database.get(
+            'SELECT * FROM games WHERE gameCode = ? LIMIT 1',
+            [gameCode],
+            (err: any, row: any) => {
+                game = new Game(row)
+            }
+        )
+
+        return game
     }
 
     /**
@@ -98,6 +88,13 @@ class Database {
      */
     joinGame = (gameId: number, opponentId: number): void => {
 
+    }
+
+    private getGameShots = (gameId: number): IGameShots => {
+        return {
+            playerShots: [],
+            opponentShots: []
+        }
     }
 }
 

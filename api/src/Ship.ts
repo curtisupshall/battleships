@@ -1,6 +1,5 @@
 import Coord from './Coord'
 import { ShipOrientation, ShipType } from './types'
-import { createShipCoords } from './utils'
 
 class Ship {
     readonly type: ShipType
@@ -10,7 +9,7 @@ class Ship {
     constructor(type: ShipType, origin: Coord, orientation: ShipOrientation) {
         this.type = type
         this.orientation = orientation
-        this.coords = createShipCoords(type, origin, orientation)
+        // this.coords = createShipCoords(type, origin, orientation)
     }
 
     isSunk = (shotsFired: Coord[]): boolean => {

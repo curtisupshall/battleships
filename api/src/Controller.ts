@@ -1,7 +1,6 @@
 import Coord from './Coord'
 import Database from './Database'
 import Game from './Game'
-import GameBoard from './GameBoard'
 
 
 
@@ -30,7 +29,7 @@ export const createGame = (playerId: number, ships: Coord[], width: number, heig
 
 export const getGames = (playerId: number): Game[] => {
     const database = new Database()
-    const games: Game[] = database.getGames(playerId)
+    const games: Game[] = [] // database.getGames(playerId)
     return games
 }
 
