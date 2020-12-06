@@ -22,8 +22,8 @@ class Game {
         this.active = Boolean(row.active),
         this.width = row.width,
         this.height = row.height,
-        this.playerShips = JSON.parse(row.playerShips),
-        this.opponentShips = JSON.parse(row.opponentShips),
+        this.playerShips = JSON.parse(`[${row.playerShips}]`),
+        this.opponentShips = JSON.parse(`[${row.opponentShips}]`),
         this.opponentShots = [],
         this.playerShots = []
     }

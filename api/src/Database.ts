@@ -57,11 +57,15 @@ class Database {
         this.database.serialize(() => {
             this.database.run(
                 'INSERT INTO games (playerId, gameCode, width, height, playerShips) VALUES (?,?,?,?,?)',
-                [playerId, gameCode, width, height, shipJson]
+                [playerId, gameCode, width, height, shipJson],
+                (err: any) => {
+                    console.log('finding Game...')
+                    return this.findGameByCode(gameCode)
+                }
             )
         })
 
-        return this.findGameByCode(gameCode)
+        console.log('Returning nothing.')
     }
 
     /**
@@ -69,16 +73,16 @@ class Database {
      * @param gameCode The game code of the game we want to find.
      */
     findGameByCode = (gameCode: string): Game => {
-        let game: Game
         this.database.get(
             'SELECT * FROM games WHERE gameCode = ? LIMIT 1',
             [gameCode],
             (err: any, row: any) => {
-                game = new Game(row)
+                const game: Game = new Game(row)
+                console.log('Found game:', game)
+                return game
             }
         )
-
-        return game
+        return null
     }
 
     /**

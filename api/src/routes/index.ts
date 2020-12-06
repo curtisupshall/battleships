@@ -40,16 +40,11 @@ router.post('/games', (request: Request<any, any, ICreateGameRequest>, response:
 		return response
 	}
 
-	console.log('Request.body:', request.body)
+	const game: Game = createGame(playerId, ships, width, height)
+	console.log('Game:', game)
+	response.status(200)
+	response.json(game.toJSON())
 
-	//try {
-		const game: Game = createGame(playerId, ships, width, height)
-		response.status(200)
-		response.json(game)
-	//} catch (err: any) {
-	//	response.status(400)
-//		response.json('Could not create game. ' + err)
-//	}
 	return response
 })
 
